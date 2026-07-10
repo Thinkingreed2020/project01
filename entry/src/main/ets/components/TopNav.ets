@@ -1,4 +1,4 @@
-
+import { router } from '@kit.ArkUI'
 
 @Component
 export struct TopNav{
@@ -15,13 +15,18 @@ export struct TopNav{
       Row(){
         if (this.isBack){
           Image($r(`app.media.back`)).width(39).height(39)
+            .onClick(()=>{
+              router.back()
+            })
         }
 
         if (this.isHistory&&this.isLove){
           Row(){
             Image($r(`app.media.history`)).width(39).height(39).margin({right:15})
               .onClick(()=>{
-
+              router.pushUrl({
+                url:'pages/HistoryPage'
+              })
               })
             Image($r(`app.media.love`)).width(39).height(39)
           }.layoutWeight(1)
