@@ -4,4 +4,5 @@ export interface HistoryRecord {
   createTime: string
   status: string
   image: Resource
+  isHistoryManageActived:boolean
 }

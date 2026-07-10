@@ -32,6 +32,13 @@ export struct HistoryCard {
           .width('100%')
           .fontSize(14)
           .fontColor('#1687E8')
+        if (this.item.isHistoryManageActived){
+          Button('删除')
+            .onClick(()=>{
+
+            })
+        }
+
       }
       .layoutWeight(1)
       .height(105)
