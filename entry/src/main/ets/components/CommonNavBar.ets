@@ -1,5 +1,5 @@
 @Component
-@Previewer
+@Preview
 export struct CommonNavBar {
   // 传递属性
   @Prop showBack: boolean = true

@@ -5,6 +5,17 @@ import { HistoryRecord } from '../models/HistoryRecord'
 @Entry
 @Component
 struct HistoryPage {
+  @State isManaging: boolean = false
+  private deleteHistory(id: number): void {
+    this.historyList = this.historyList.filter(
+      (item: HistoryRecord) => item.id !== id
+    )
+
+    // 全部删除后自动退出管理状态
+    if (this.historyList.length === 0) {
+      this.isManaging = false
+    }
+  }
   @State historyList: HistoryRecord[] = [
     {
       id: 1,
@@ -39,9 +50,6 @@ struct HistoryPage {
       isHistoryManageActived:false
     }
   ]
-  deleteHistory(index:number){
-
-  }
 
   build() {
     Column() {
@@ -99,7 +107,11 @@ struct HistoryPage {
         (item: HistoryRecord) => {
           ListItem() {
             HistoryCard({
-              item: item
+              item: item,
+              isManaging:this.isManaging,
+              onDelete:(id:number)=>{
+                this.deleteHistory(id)
+              }
             })
           }
         },
@@ -152,17 +164,18 @@ struct HistoryPage {
         .borderRadius(22)
         .onClick(() => {
           this.historyList = []
+          this.isManaging = false
         })
 
-      Button('管理')
+      Button(this.isManaging ? '完成' : '管理')
         .layoutWeight(1)
         .height(44)
         .fontSize(16)
         .fontColor(Color.White)
         .backgroundColor('#1677FF')
         .borderRadius(22)
-        .onClick(()=>{
-          this.historyList[].isHistoryManageActived!=this.historyList[].isHistoryManageActived
+        .onClick(() => {
+          this.isManaging = !this.isManaging
         })
     }
     .width('100%')

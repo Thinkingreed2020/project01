@@ -1,6 +1,7 @@
 
 import { router } from '@kit.ArkUI'
-import { TopNav,Xuanpin } from '../components/Xuanpin/Index'
+import { TopNav } from '../components/TopNav'
+import {Xuanpin} from '../components/Xuanpin/Xuanpin'
 
 @Entry
 @Component

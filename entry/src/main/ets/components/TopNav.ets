@@ -9,6 +9,8 @@ export struct TopNav{
   @Prop isHistory:boolean=true
   @Prop isLove:boolean=true
 
+  sendClick:(tab:number,message:string)=>void=()=>{}
+
   build() {
     Column(){
 
@@ -127,6 +129,9 @@ export struct TopNav{
           .margin({
             left: 12,
             bottom: 12
+          })
+          .onClick(()=>{
+              this.sendClick(this.currentTab,this.message)
           })
 
         Button('AI推荐').fontColor(Color.Black).border({color:Color.Black,width:1,style:BorderStyle.Solid})
